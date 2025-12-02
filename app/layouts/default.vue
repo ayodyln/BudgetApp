@@ -1,47 +1,32 @@
 <script setup lang="ts">
-import type { NavigationMenuItem } from '@nuxt/ui'
+import { useNavigation, PageMap } from '~/lib/registries/PageMap'
 
-const items: NavigationMenuItem[] = [
-    {
-        label: 'Home',
-        icon: 'i-lucide-house',
-        href: '/',
-    },
-    {
-        label: 'Settings',
-        icon: 'i-lucide-inbox',
-        href: '/settings',
-    },
-]
-
-const TOGGLES = {
-    color: 'primary',
-    variant: 'subtle',
-    class: 'rounded-full',
-} as const
+const route = useRoute()
+const appConfig = useAppConfig()
+const { TOGGLE, ITEMS } = useNavigation()
 </script>
 
 <template>
     <UDashboardGroup>
-        <UDashboardSidebar :toggle="TOGGLES">
+        <UDashboardSidebar collapsible :toggle="TOGGLE">
             <template #header="{ collapsed }">
                 <UIcon
-                    v-if="!collapsed"
-                    name="i-simple-icons-nuxtdotjs"
+                    name="i-game-icons:ancient-ruins"
                     class="size-5 text-primary mx-auto"
                 />
-                <UIcon
-                    v-else
-                    name="i-simple-icons-nuxtdotjs"
-                    class="size-5 text-primary mx-auto"
-                />
+                <template v-if="!collapsed">
+                    {{ appConfig.title }}
+                </template>
             </template>
-            <UNavigationMenu :items="items" orientation="vertical" />
+            <template #footer>
+                <UDashboardSidebarCollapse block />
+            </template>
+            <UNavigationMenu :items="ITEMS" orientation="vertical" />
         </UDashboardSidebar>
 
         <UDashboardPanel resizable>
             <template #header>
-                <UDashboardNavbar title="Dashboard" />
+                <UDashboardNavbar :title="PageMap[String(route.name)]" />
             </template>
             <template #body>
                 <slot />

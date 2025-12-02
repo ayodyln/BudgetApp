@@ -1,7 +1,5 @@
-<script setup lang="ts">
-const appConfig = useAppConfig()
-</script>
+<script setup lang="ts"></script>
 
 <template>
-    <div>{{ appConfig.title }}</div>
+    <div>Settings</div>
 </template>

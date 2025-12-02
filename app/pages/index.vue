@@ -2,6 +2,6 @@
 
 <template>
     <div>
-        hello
+        Dashboard
     </div>
 </template>
