@@ -3,7 +3,18 @@
 This tool is a visual approach to creating a budgeting program that follows a basic three pillars model: _Fundemental_, _Fun_, and _Future_ categories. This is model is customizable, but will be the base line. 
 
 ## Todo
-[] Test
+- [] Layout navigation
+- [] Site pages
+- [] basic page design
+- [] ability to input income
+- [] ability to input income pay dates for re-occuring information
+- [] ability to create more budgeting pillars
+- [] Have the three core pillars: Fundemental, Fun, and _Future_
+- [] Goal tracking
+- [] Debt tracking
+- [] accounts tracking
+- [] PLAID in the future?
+- [] MVP - NO PERSONAL DATA OR FINANCIAL ACCOUNTS. This is purely a visual tool thats akin to usking a spreadsheet.
 
 ---
 # Nuxt Minimal Starter
