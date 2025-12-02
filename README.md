@@ -1,3 +1,11 @@
+# Finance & Budgeting Tool
+
+This tool is a visual approach to creating a budgeting program that follows a basic three pillars model: _Fundemental_, _Fun_, and _Future_ categories. This is model is customizable, but will be the base line. 
+
+## Todo
+[] Test
+
+---
 # Nuxt Minimal Starter
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.

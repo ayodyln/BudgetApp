@@ -1,18 +1,51 @@
 <script setup lang="ts">
-import LayoutHeader from '~/lib/components/LayoutHeader.vue'
-import LayoutFooter from '~/lib/components/LayoutFooter.vue'
-import LayoutSideNav from '~/lib/components/LayoutSideNav.vue'
+import type { NavigationMenuItem } from '@nuxt/ui'
+
+const items: NavigationMenuItem[] = [
+    {
+        label: 'Home',
+        icon: 'i-lucide-house',
+        href: '/',
+    },
+    {
+        label: 'Settings',
+        icon: 'i-lucide-inbox',
+        href: '/settings',
+    },
+]
+
+const TOGGLES = {
+    color: 'primary',
+    variant: 'subtle',
+    class: 'rounded-full',
+} as const
 </script>
 
 <template>
-    <section id="layout__wrapper" class="bg-gray-50/50 flex flex-col flex-1">
-        <LayoutHeader id="layout__header" />
-        <div id="layout__content-wrapper" class="flex">
-            <LayoutSideNav id="layout__side-nav" />
-            <UMain id="layout__main" class="bg-amber-500">
+    <UDashboardGroup>
+        <UDashboardSidebar :toggle="TOGGLES">
+            <template #header="{ collapsed }">
+                <UIcon
+                    v-if="!collapsed"
+                    name="i-simple-icons-nuxtdotjs"
+                    class="size-5 text-primary mx-auto"
+                />
+                <UIcon
+                    v-else
+                    name="i-simple-icons-nuxtdotjs"
+                    class="size-5 text-primary mx-auto"
+                />
+            </template>
+            <UNavigationMenu :items="items" orientation="vertical" />
+        </UDashboardSidebar>
+
+        <UDashboardPanel resizable>
+            <template #header>
+                <UDashboardNavbar title="Dashboard" />
+            </template>
+            <template #body>
                 <slot />
-            </UMain>
-            <LayoutFooter id="layout__footer" />
-        </div>
-    </section>
+            </template>
+        </UDashboardPanel>
+    </UDashboardGroup>
 </template>
