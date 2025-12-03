@@ -15,12 +15,12 @@ export const useNavigation = () => {
     const ITEMS: NavigationMenuItem[] = [
         {
             label: PageMap.index,
-            icon: 'i-lucide-house',
+            icon: 'i-lucide-home',
             href: '/',
         },
         {
             label: PageMap.settings,
-            icon: 'i-lucide-inbox',
+            icon: 'i-lucide-settings',
             href: '/settings',
         },
     ] as const

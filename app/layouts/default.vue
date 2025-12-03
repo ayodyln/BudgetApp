@@ -19,7 +19,7 @@ const { TOGGLE, ITEMS } = useNavigation()
                 </template>
             </template>
             <template #footer>
-                <UDashboardSidebarCollapse block />
+                <UDashboardSidebarCollapse block variant="soft" />
             </template>
             <UNavigationMenu :items="ITEMS" orientation="vertical" />
         </UDashboardSidebar>
