@@ -1,3 +1,6 @@
+import { ref } from 'vue'
+
+import type { Ref, ComputedRef } from 'vue'
 import type { NavigationMenuItem } from '@nuxt/ui'
 
 export const PageMap: Record<string, string> = {
@@ -5,14 +8,22 @@ export const PageMap: Record<string, string> = {
     settings: 'Settings',
 }
 
-export const useNavigation = () => {
-    const TOGGLE = {
+interface Navigation {
+    isCollapsed: Ref<boolean>
+    toggle: Record<string, string>
+    items: ComputedRef<NavigationMenuItem[]>
+}
+
+export const useNavigation = (): Navigation => {
+    const isCollapsed = ref<boolean>(false)
+
+    const toggle = {
         color: 'primary',
         variant: 'subtle',
         class: 'rounded-full',
     } as const
 
-    const ITEMS: NavigationMenuItem[] = [
+    const items = computed<NavigationMenuItem[]>(() => [
         {
             label: PageMap.index,
             icon: 'i-lucide-home',
@@ -23,7 +34,7 @@ export const useNavigation = () => {
             icon: 'i-lucide-settings',
             href: '/settings',
         },
-    ] as const
+    ])
 
-    return { TOGGLE, ITEMS }
+    return { toggle, items, isCollapsed }
 }

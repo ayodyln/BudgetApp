@@ -3,12 +3,13 @@ import { useNavigation, PageMap } from '~/lib/registries/PageMap'
 
 const route = useRoute()
 const appConfig = useAppConfig()
-const { TOGGLE, ITEMS } = useNavigation()
+
+const { isCollapsed, toggle, items } = useNavigation()
 </script>
 
 <template>
     <UDashboardGroup>
-        <UDashboardSidebar collapsible :toggle="TOGGLE">
+        <UDashboardSidebar v-model:collapsed="isCollapsed" collapsible :toggle>
             <template #header="{ collapsed }">
                 <UIcon
                     name="i-game-icons:ancient-ruins"
@@ -21,7 +22,7 @@ const { TOGGLE, ITEMS } = useNavigation()
             <template #footer>
                 <UDashboardSidebarCollapse block variant="soft" />
             </template>
-            <UNavigationMenu :items="ITEMS" orientation="vertical" />
+            <UNavigationMenu :items orientation="vertical" />
         </UDashboardSidebar>
 
         <UDashboardPanel resizable>
