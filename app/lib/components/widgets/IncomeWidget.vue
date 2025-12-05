@@ -32,7 +32,7 @@ const columns: TableColumn<IncomeData>[] = [
 </script>
 
 <template>
-    <UCard class="col-span-2">
+    <UCard>
         <template #header>
             <h2 class="text-xl font-bold">Total Income</h2>
         </template>

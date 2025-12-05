@@ -1,10 +1,9 @@
-use std::fs::File;
-use std::io::prelude::*;
+use tauri::ipc::Response;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![show_main_window, get_data])
+        .invoke_handler(tauri::generate_handler![show_main_window, get_fba_data])
         .setup(|app| {
             if cfg!(debug_assertions) {
                 app.handle().plugin(
@@ -26,10 +25,8 @@ async fn show_main_window(window: tauri::Window) {
 }
 
 #[tauri::command]
-async fn get_data() -> Result<String, String> {
-    let mut file = File::open("/Users/dylansmith/documents/github/projects/temp_dev_data/fba.json").map_err(|e| e.to_string())?;
-    let mut contents = String::new();
-    file.read_to_string(&mut contents)
-        .map_err(|e| e.to_string())?;
-    Ok(contents)
-}   
+async fn get_fba_data() -> Response {
+    let data = std::fs::read("/Users/dylansmith/documents/github/projects/temp_dev_data/fba.json")
+        .unwrap();
+    tauri::ipc::Response::new(data)
+}
